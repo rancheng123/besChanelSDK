@@ -9,10 +9,8 @@ module.exports = {
         })
     ],
 
-    // 通用修改 start
-	// 入口文件
-	//entry: './sdk/src/index.js',
-    // 通用修改 end
+    mode: process.env.NODE_ENV === "production"?"production" : "development",
+    devtool: 'source-map',
 
   // 出口文件
   output: {

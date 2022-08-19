@@ -15,8 +15,6 @@ let json = {
             title: 'My App',
         })
     ],
-    mode: process.env.NODE_ENV === "production"?"production" : "development",
-    devtool: 'source-map',
     devServer: {
         https: true,
         host: "127.0.0.1",
