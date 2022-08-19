@@ -1,5 +1,3 @@
-import Collect from './collect.js';
-
-window.Collect = Collect;
-
-export default Collect;
+import CollectWeb from "./collect-web";
+window.CollectWeb = CollectWeb;
+export default CollectWeb;

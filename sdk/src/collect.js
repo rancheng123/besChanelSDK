@@ -170,21 +170,7 @@
       this.commonProperties.browser = privateMethods.getBrowserInfo()? privateMethods.getBrowserInfo().browser:'';
       this.commonProperties.browser_version = privateMethods.getBrowserInfo()?privateMethods.getBrowserInfo().ver:'';
     }
-    // 注册事件
-    registerEvent() {
-      // 改写replaceState和pushState，以确保window能监听到
-      history.replaceState = addEvent('replaceState');
-      //history.pushState = addEvent('pushState');
-      window.addEventListener('replaceState', (state) => this.onPushStateHandle(state));
-      window.addEventListener('pushState', (state) => this.onPushStateHandle(state));
 
-      window.addEventListener('popstate', (state) => this.onPopStateHandle(state));
-      window.addEventListener('beforeunload', (state) => this.onBeforeunloadHandle(state));
-      // 监听页面是显示和隐藏
-      window.addEventListener('visibilitychange', (state) => this.onHiddenOrShow(state))
-      // 监听页面的点击事件
-      window.addEventListener('click', (e) => this.autoCollectUpload(e))
-    }
     // 全埋点实现监听
     autoCollectUpload (e) {
       if(hasEvent(e.target.nodeName,this.events)){
@@ -557,12 +543,6 @@
 
 
 
-const besChannesSDK = new Collect();
-besChannesSDK.init({autoCollect:false,events:["BUTTON"]});
-
-window.besChannesSDK = besChannesSDK
-
-
 
 
 
@@ -670,6 +650,7 @@ class Track {
     firstPageLoad(){
 
         let handle = ()=>{
+            this.urlAddOriginPage()
             this.firstReportVisit()
         }
         window.removeEventListener('load',handle)
@@ -683,7 +664,6 @@ class Track {
             this.state.firstLoad = true
             //上报访问
             setTimeout(()=>{
-                this.urlAddOriginPage()
                 this.state.firstReportVisitDone = true
             },300)
         }
@@ -714,7 +694,7 @@ class Track {
 
 
             //有指定的跳转链接
-            if(besChannesSDK.mappingAddress && besChannesSDK.parseMapping(besChannesSDK.mappingAddress)){
+            if(this.mappingAddress && this.parseMapping(this.mappingAddress)){
 
 
                 if(document.referrer){
@@ -723,7 +703,7 @@ class Track {
                         search: '?' + document.referrer.split('?')[1]
                     }
                 }else{
-                    let url = besChannesSDK.parseMapping(besChannesSDK.mappingAddress)
+                    let url = this.parseMapping(this.mappingAddress)
                     if(url){
                         dataFrom = parseUrl(url)
                     }
@@ -781,9 +761,9 @@ class Track {
         }
 
         if(reportAll){
-            besChannesSDK.report()
+            this.report()
         }else{
-            besChannesSDK.reportVisit()
+            this.reportVisit()
         }
     }
     getCurrentState(){
