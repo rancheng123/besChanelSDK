@@ -8,8 +8,12 @@ module.exports = {
             "global_timestamp": Date.now()
         })
     ],
+
+    // 通用修改 start
 	// 入口文件
-	entry: './sdk/src/index.js',
+	//entry: './sdk/src/index.js',
+    // 通用修改 end
+
   // 出口文件
   output: {
     path: path.resolve(__dirname, 'dist'), // 输出路径

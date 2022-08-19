@@ -74,7 +74,7 @@
       this.optionsParams = {};
       this.expiresTime = 30 * 60;
       this.baseUrl = baseUrl[process.env.NODE_ENV];
-      debugger
+
       console.log(this.baseUrl,'this.baseUrl--')
       this.autoCollect = false
       this.events = ["A"]
