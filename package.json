@@ -1,0 +1,42 @@
+{
+  "name": "zq-track",
+  "version": "0.0.1",
+  "description": "埋点 ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":          "cross-env NODE_ENV=production webpack serve  --config webpack.js",
+    "build:dev":    "cross-env NODE_ENV=development webpack        --config webpack.js",
+    "build:prod":   "cross-env NODE_ENV=production  webpack        --config webpack.js",
+    "build:test":   "cross-env NODE_ENV=test        webpack        --config webpack.js",
+    "build:release":"cross-env NODE_ENV=release     webpack        --config webpack.js"
+  },
+  "keywords": [
+    "埋点"
+  ],
+  "author": "zq",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.13.13",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-transform-regenerator": "^7.12.13",
+    "@babel/plugin-transform-runtime": "^7.13.10",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/preset-react": "^7.13.13",
+    "axios": "^0.21.1",
+    "babel-loader": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "fingerprintjs2": "^2.1.4",
+    "js-cookie": "^2.2.1",
+    "moment": "^2.29.1",
+    "open-browser-webpack-plugin": "0.0.5",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^5.28.0",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.7.3"
+  },
+  "dependencies": {
+    "html-webpack-plugin": "^5.3.1"
+  }
+}

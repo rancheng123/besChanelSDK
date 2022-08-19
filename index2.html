@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script id="besChannesSDK"  src='./dist/collect-0.0.1.min.js?token=62897477'></script>
+    <script >
+        /**
+         * 接收自定义参数
+         * @params 自定义参数对象，非必填(可传多个自定义参数,如下示例)
+         */
+        besChannesSDK.recieveSelfParmas({
+            memberid: 123,
+            openid: 123,
+            mappingAddress: JSON.stringify({
+                '/index.html': '/index2.html',
+                '/meetings/MeetingPc/Detail': '/meetings-api/sapIndex/SapSourceData'
+            })
+        })
+
+
+        /*
+        @陈甜佳  ，甜佳，埋点三个问题讨论的结果如下：
+
+  1.推广链接重定向跳转问题处理：
+  该问题目前只出现在scrm会议和内容部分，针对这部分特殊处理。由后端提供一个跳转前后链接的对应关系给到前端。
+  前端上报时，根据对应关系，上报真正的原始推广链接。
+
+  https://app-cd01.ma.scrmtech.com/meetings-api/sapIndex/SapSourceData?pf_uid=58201_32054&sid=83488&source=2&pf_type=3
+  https://app-cd01.ma.scrmtech.com/meetings/MeetingPc/Detail          ?pf_uid=58201_32054&id=83488&source=2&pf_type=3
+
+
+  2.推广链接被添加其他参数问题处理：
+  前端上报时，判断上报推广链接里参数。保留最后一个以utm_开头参数及之前部分。之后部分如有参数直接截取掉。
+
+
+  3.推广链接登陆后，跳转回来之后utm参数丢失问题：
+  这个问题，周周看了登陆代码对应部分。如果改动涉及面会比较大，影响比较大。建议暂时先不动不做处理。
+
+
+        */
+    </script>
+
+</head>
+<body>
+<a href="/index3.html" >index3</a>
+<div id="pushState">
+    pushState
+</div>
+<div id="pushState2">
+    pushState2
+</div>
+
+</body>
+<script >
+    document.getElementById('pushState').onclick = ()=>{
+        history.pushState({},'','/index2_1.html')
+    }
+    document.getElementById('pushState2').onclick = ()=>{
+        history.pushState({},'','/index2_2.html')
+    }
+</script>
+</html>

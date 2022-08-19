@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <div style="width:200px">
+      <button onclick='look()'>查看数据</button>
+      <button onclick='clickButton()'>点击按钮</button>
+      <button onclick='content()'>身份关联</button>
+      <a  href="https://www.baidu.com/">页面跳转</a>
+      <a target="_blank" href="https://www.baidu.com/">新页面页面跳转</a>
+
+
+    </div>
+    <script id="besChannesSDK"  src='./dist/collect-0.0.1.min.js?token=62897477'></script>
+  <script >
+
+      window.addEventListener('load', ()=>{
+          const myCollect = new Collect();
+
+          const params = {}
+          myCollect.$visit(params);
+
+          myCollect.setCustomerId(8888)
+      }, false)
+
+
+    // const look = function(){
+    //   console.log('myCollect',myCollect.commonProperties)
+    //   console.log('params',myCollect.params)
+    //   console.log('paramsData',myCollect.paramsData)
+    //   console.log('eventParams',myCollect.eventParams)
+    // }
+    // const clickButton = function(){
+    //   const params = {
+    //     element_content:"点击按钮",
+    //     element_name:"点击按钮",
+    //     element_target_url:"",
+    //     options:"" ,
+    //   }
+    //   // myCollect.$eventClick(params)
+    // }
+    // const content = function(){
+    //   const params = {
+    //     customer_id: "10001",
+    //   }
+    //   myCollect.$associate(params);
+    // }
+  </script>
+</body>
+</html>
