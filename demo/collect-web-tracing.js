@@ -1,7 +1,7 @@
-import Collect from "../sdk/reportSDK/src/collect";
-import CollectWeb from "../sdk/reportSDK/src";
+import CollectWebTracing from "../sdk/reportSDK/src/collect-web-tracing/collect-web-tracing";
 
-const besChannesSDK = new CollectWeb();
+
+const besChannesSDK = new CollectWebTracing();
 besChannesSDK.init({autoCollect:false,events:["BUTTON"]});
 
 besChannesSDK.recieveSelfParmas({

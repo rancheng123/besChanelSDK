@@ -1,8 +1,8 @@
 /**
  * 数据收集
  */
-  import privateMethods from './private';
-  import { addEvent, register, remove, getCurrentTime,hasEvent } from './utils';
+  import privateMethods from '../private';
+  import { addEvent, register, remove, getCurrentTime,hasEvent } from '../utils';
   import Axios from 'axios';
   const baseUrl = {
     development:'https://bomb-dev.ma.scrmtech.com/collect-dev/collect.gif',
@@ -17,7 +17,7 @@
    */
   class Collect {
     constructor({org_id,customer_id,module_type}){
-      // 初始化数据 
+      // 初始化数据
       this.commonProperties = {
         token:'XXXX',
         fingerprint_id: "", // 指纹id
@@ -54,7 +54,7 @@
     }
     // 初始化
    async init(option) {
-     
+
       const eventTags = option.events || []
       this.events= [...this.events,...eventTags];
       this.autoCollect = option.autoCollect || false
@@ -103,7 +103,7 @@
         this.commonProperties.is_first = 1
       }
     }
-    // 生成一个唯一标识 
+    // 生成一个唯一标识
     getSessionId(){
       const sessionInfo = JSON.parse(localStorage.getItem("sessionInfo"))
       if(sessionInfo){
@@ -111,13 +111,13 @@
         const session_id = sessionInfo.session_id
         const now = getCurrentTime()
         // 会话过期
-      
+
         if(session_id && now >= expires){
           this.commonProperties.session_id = privateMethods.getUuid(16,16)
           expires = getCurrentTime() + this.expiresTime // 过期时间 30分钟
           localStorage.setItem("sessionInfo",JSON.stringify({session_id:this.commonProperties.session_id,expires}))
         }else {
-          
+
           this.commonProperties.session_id = session_id
         }
       }else{
@@ -152,11 +152,11 @@
     autoCollectUpload (e) {
       if(hasEvent(e.target.nodeName,this.events)){
         const eventParams = {
-          element_content:e.target.innerText, 
-          element_name:e.target.innerText, 
-          element_target_url:e.target.href, 
-          element_class:e.target.className, 
-          element_id:e.target.id, 
+          element_content:e.target.innerText,
+          element_name:e.target.innerText,
+          element_target_url:e.target.href,
+          element_class:e.target.className,
+          element_id:e.target.id,
         }
         if(e.target.nodeName === "A"){
           // a标签会触发页面离开事件
@@ -164,7 +164,7 @@
         }else{
           this._eventClick(eventParams)
         }
-     
+
       }
     }
     // 页面隐藏和显示
@@ -230,7 +230,7 @@
     }
     /**
      * 访问事件触发
-     * @param {*} visitParams 
+     * @param {*} visitParams
      */
     $visit(visitParams) {
       if(this.autoCollect) return;
@@ -263,7 +263,7 @@
     }
     /**
      * 点击事件触发
-     * @param {*} eventParams 
+     * @param {*} eventParams
      */
     $eventClick(eventParams) {
       if(this.autoCollect) return;
@@ -356,7 +356,7 @@
           ...optionsParams,
           ...commonProperties,
           page_session:pageSession,
-          page_id:visitParams.page_id, 
+          page_id:visitParams.page_id,
         }
       }
       return query;

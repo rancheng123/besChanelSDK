@@ -1,9 +1,11 @@
-import Collect from "./collect";
-import {addEvent, getCurrentTime} from "./utils";
-import {firstPageLoad} from "../../common/utils";
+import Collect from "../base/collect";
+import {addEvent, getCurrentTime} from "../utils";
+import {firstPageLoad} from "../../../common/utils";
 class CollectWeb extends Collect{
     constructor() {
         super()
+        // 注册事件
+        this.registerEvent();
     }
     // 注册事件
     registerEvent() {
@@ -14,12 +16,6 @@ class CollectWeb extends Collect{
         window.addEventListener('beforeunload', (state) => {
             this.reportLeave()
         });
-
-
-
-
-
-
 
         // 改写replaceState和pushState，以确保window能监听到
         history.replaceState = addEvent('replaceState');

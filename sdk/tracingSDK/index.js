@@ -1,3 +1,4 @@
+import getUtmJson from "./parseUrl";
 class Track {
     constructor({
                     reportLeaveAndVisit, reportVisit

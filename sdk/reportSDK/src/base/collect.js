@@ -1,8 +1,8 @@
 /**
  * 数据收集
  */
-  import privateMethods from './private';
-  import { addEvent, register, remove, getCurrentTime,hasEvent } from './utils';
+  import privateMethods from '../private';
+  import { addEvent, register, remove, getCurrentTime,hasEvent } from '../utils';
   import Axios from 'axios';
   const baseUrl = {
     development:'https://exp-stg.beschannels.com/collect/collect.gif',
@@ -10,37 +10,6 @@
     release:'https://exp-stg.beschannels.com/collect/collect.gif',
     production:'https://exp.beschannels.com/collect/collect.gif',
   }
-
-
-
-    let besChannesSDKScript = document.getElementById('besChannesSDK')
-    let isProd =  process.env.NODE_ENV === 'production'
-
-    let parseUrlScript = document.createElement('script');
-    if(isProd){
-        parseUrlScript.src = 'https://app.beschannels.com/web-ui/lib/zq-public/utils/parseUrl.js?token='  + global_timestamp
-    }else {
-        parseUrlScript.src = 'https://app-dev.beschannels.com/web-ui/lib/zq-public/utils/parseUrl.js?token='  + global_timestamp
-    }
-    if(localStorage.getItem('SDK_debug')){
-        parseUrlScript.src = 'http://localhost:8092/lib/zq-public/utils/parseUrl.js?token=' + global_timestamp
-    }
-
-
-    document.head.appendChild(parseUrlScript)
-    parseUrlScript.onload = ()=>{
-        //debugger
-    }
-
-
-
-
-
-
-
-
-    let trackCase
-
   /**
    * 数据收集
    * @params org_id 主账号ID
@@ -82,12 +51,7 @@
       this.getAnonymousId()
       this.getSessionId()
       this.getDeviceInfo();
-     // 注册事件
-     this.registerEvent();
     }
-
-
-
     // 初始化
    async init(option) {
 
@@ -425,16 +389,9 @@
       let query;
       if(type === 1) {
 
-        let location =  window.location
-        if(this.mappingAddress && this.parseMapping(this.mappingAddress)){
-            let url = this.parseMapping(this.mappingAddress)
-            if(url){
-                location = parseUrl(url)
-            }
 
-        }
+        let utmJson = this.extendReportParam?this.extendReportParam(): {}
 
-        let utmJson = getUtmJson(location, 'link')
         query = {
           ...commonProperties,
           page_session:pageSession,

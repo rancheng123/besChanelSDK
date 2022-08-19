@@ -3,12 +3,13 @@ const common = require("./webpack.common.js");
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+let SDK_TYPE = process.env.SDK_TYPE
 
 let json
-if(process.env.action === 'demo'){
+if(process.env.ACTION === 'demo'){
 
     json = {
-        entry: './demo/index.js',
+        entry: `./demo/${SDK_TYPE}.js`,
         plugins:[
             new HtmlWebpackPlugin({
                 template: path.resolve(__dirname,'./demo/index.html'),
@@ -22,8 +23,9 @@ if(process.env.action === 'demo'){
         mode: "development",
     }
 }else{
+    //build
     json = {
-        entry: './sdk/src/index.js',
+        entry: `./sdk/src/${SDK_TYPE}.js`,
         mode: process.env.NODE_ENV === "production"?"production" : "development",
     }
 }
