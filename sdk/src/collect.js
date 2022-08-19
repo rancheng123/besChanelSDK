@@ -12,6 +12,7 @@
   }
 
 
+
     let besChannesSDKScript = document.getElementById('besChannesSDK')
     let isProd =  process.env.NODE_ENV === 'production'
 
@@ -30,6 +31,7 @@
     parseUrlScript.onload = ()=>{
         //debugger
     }
+
 
 
 
@@ -73,9 +75,7 @@
       };
       this.optionsParams = {};
       this.expiresTime = 30 * 60;
-      this.baseUrl = baseUrl[process.env.NODE_ENV];
-
-      console.log(this.baseUrl,'this.baseUrl--')
+      this.baseUrl = baseUrl[process.env.NODE_ENV],
       this.autoCollect = false
       this.events = ["A"]
       this.getFingerprintId()
@@ -90,6 +90,7 @@
 
     // 初始化
    async init(option) {
+
        const eventTags = option.events || []
        this.events= [...this.events,...eventTags];
        this.autoCollect = option.autoCollect || false
@@ -302,10 +303,8 @@
       }
 
       reportVisit(){
-          if(location.href.match('utm_')){
-              //上报访问
-              this._visit({})
-          }
+          //上报访问
+          this._visit({})
       }
 
       reportLeave(){
@@ -555,6 +554,7 @@
        return this.commonProperties.anonymous_id
       }
 }
+
 
 
 const besChannesSDK = new Collect();
