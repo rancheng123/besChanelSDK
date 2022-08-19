@@ -1,11 +1,17 @@
 import Collect from "./collect";
 import {addEvent} from "./utils";
+import {firstPageLoad} from "../../common/utils";
 class CollectWeb extends Collect{
     constructor() {
         super()
     }
     // 注册事件
     registerEvent() {
+
+        firstPageLoad(()=>{
+            this.reportVisit()
+        })
+
         // 改写replaceState和pushState，以确保window能监听到
         history.replaceState = addEvent('replaceState');
         //history.pushState = addEvent('pushState');

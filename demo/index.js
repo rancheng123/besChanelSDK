@@ -1,4 +1,4 @@
-import Collect from '../sdk/src/collect.js';
+import Collect from '../sdk/reportSDK/src/collect.js';
 import './besChanneInit.js'
 
 window.Collect = Collect;
