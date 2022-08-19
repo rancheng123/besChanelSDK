@@ -11,22 +11,22 @@ class CollectWeb extends Collect{
     registerEvent() {
 
         firstPageLoad(()=>{
-            this.reportVisit()
+            this.onPageShow()
         })
         window.addEventListener('beforeunload', (state) => {
-            this.reportLeave()
+            this.onPageBeforeUnload()
         });
 
         // 改写replaceState和pushState，以确保window能监听到
         history.replaceState = addEvent('replaceState');
         window.addEventListener('replaceState', (state) => {
-            this.reportLeaveAndVisit()
+            this.onChangeState()
         });
         window.addEventListener('pushState', (state) => {
-            this.reportLeaveAndVisit()
+            this.onChangeState()
         });
         window.addEventListener('popstate', (state) => {
-            this.reportLeaveAndVisit()
+            this.onChangeState()
         });
 
         // 监听页面是显示和隐藏
@@ -40,8 +40,24 @@ class CollectWeb extends Collect{
         })
         // 监听页面的点击事件
         window.addEventListener('click', (e) => {
-            this.eventClick(e)
+            this.onClick(e)
         })
     }
+
+    //生命周期   start
+    onPageShow(){
+        this.reportVisit()
+    }
+    onChangeState(){
+        this.reportLeaveAndVisit()
+    }
+    onClick(e){
+        this.eventClick(e)
+    }
+    onPageBeforeUnload(){
+        this.reportLeave()
+    }
+
+    //生命周期   end
 }
 export default CollectWeb
