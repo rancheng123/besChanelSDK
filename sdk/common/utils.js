@@ -2,6 +2,7 @@ let firstPageLoadDone = false
 
 export const firstPageLoad = (callback) => {
     let handle = ()=>{
+        debugger
         if(!firstPageLoadDone){
             firstPageLoadDone = true
             setTimeout(()=>{

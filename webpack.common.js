@@ -8,8 +8,6 @@ module.exports = {
             "global_timestamp": Date.now()
         })
     ],
-
-    mode: process.env.NODE_ENV === "production"?"production" : "development",
     devtool: 'source-map',
 
   // 出口文件

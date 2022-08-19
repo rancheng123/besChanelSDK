@@ -190,65 +190,22 @@
 
       }
     }
-    // 页面隐藏和显示
-    onHiddenOrShow(){
-      if(document.hidden || document.visibilityState === "hidden"){
+
+    computedLeaveTimeAndDuration(){
         this.params.leaveTime  = getCurrentTime()
         let viewDuration = this.params.leaveTime-this.params.visitTime
         if(typeof this.params.view_duration === 'undefined' || isNaN(this.params.view_duration)){
             this.params.view_duration = 0
         }
-          if(typeof viewDuration === 'undefined' || isNaN(viewDuration)){
-              viewDuration = 30
-          }
+        if(typeof viewDuration === 'undefined' || isNaN(viewDuration)){
+            viewDuration = 30
+        }
 
         this.params.view_duration  = this.params.view_duration + viewDuration
-
-      }else{
-        this.params.visitTime = getCurrentTime()
-      }
     }
-    // 页面回退回调
-    onPopStateHandle(state) {
-         console.log(state.state,'state')
-        if(trackCase.state.firstReportVisitDone && state.state !==null){
-            this.report()
-        }
-
-    }
-    // 离开页面回调
-    onBeforeunloadHandle(event) {
-        trackCase.state.firstLoad = false
-        trackCase.state.firstReportVisitDone = false
-        this.reportLeave()
-    }
-    // 页面跳转回调
-    onPushStateHandle(state) {
-
-        // debugger
-        localStorage.setItem('preState', JSON.stringify(history.state || {}))
 
 
 
-
-        trackCase.pushStateArr(history.state)
-        trackCase.updateCurrentState(history.state.timeStamp)
-        trackCase.updatePreState(history.state.timeStamp)
-
-
-
-
-        if(!history.state.traceFlag){
-            //用户的pushState  补偿参数
-             trackCase.urlAddOriginPage({
-                isUsePush: true,
-                reportAll: true
-            })
-        }else{
-
-        }
-
-    }
     // 上传数据
     async collectUpload(params) {
       const keys = Object.keys(params)
@@ -276,16 +233,14 @@
 
 
 
-      report(){
-         if(location.href.match('utm_')){
-             this._calcParams();
-             //上报离开
-             this.collectUpload(this._concatParams(3)).then(res => {
-                 this._clearDataParams();
-                 //上报访问
-                 this._visit({})
-             })
-         }
+      reportLeaveAndVisit(){
+          this._calcParams();
+          //上报离开
+          this.collectUpload(this._concatParams(3)).then(res => {
+              this._clearDataParams();
+              //上报访问
+              this._visit({})
+          })
       }
 
       reportVisit(){

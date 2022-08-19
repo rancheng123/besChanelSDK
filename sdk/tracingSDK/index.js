@@ -1,9 +1,9 @@
 class Track {
     constructor({
-                    report, reportVisit
+                    reportLeaveAndVisit, reportVisit
                 }) {
 
-        this.report = report;
+        this.reportLeaveAndVisit = reportLeaveAndVisit;
         this.reportVisit = reportVisit;
 
         this.state = {
@@ -214,7 +214,7 @@ class Track {
         }
 
         if(reportAll){
-            this.report()
+            this.reportLeaveAndVisit()
         }else{
             this.reportVisit()
         }
@@ -300,7 +300,7 @@ class Track {
 }
 
 trackCase = new Track({
-    report:  besChannesSDK.report,
+    reportLeaveAndVisit:  besChannesSDK.reportLeaveAndVisit,
     reportVisit: besChannesSDK.reportVisit,
 })
 
