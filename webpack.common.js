@@ -9,7 +9,7 @@ module.exports = {
         })
     ],
 	// 入口文件
-	entry: './src/index.js',
+	entry: './sdk/src/index.js',
   // 出口文件
   output: {
     path: path.resolve(__dirname, 'dist'), // 输出路径
