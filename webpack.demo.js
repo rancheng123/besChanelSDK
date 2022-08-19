@@ -4,9 +4,6 @@ const common = require("./webpack.common.js");
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
-
-
 let json = {
     entry: './demo/index.js',
     plugins:[
@@ -20,6 +17,5 @@ let json = {
         host: "127.0.0.1",
     },
 }
-
 
 module.exports = merge(common, json);

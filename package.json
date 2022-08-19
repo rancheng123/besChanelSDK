@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":          "cross-env NODE_ENV=development  webpack serve  --config webpack.demo.js",
-    "build:dev":    "cross-env NODE_ENV=development webpack        --config webpack.js",
-    "build:prod":   "cross-env NODE_ENV=production  webpack        --config webpack.js",
-    "build:test":   "cross-env NODE_ENV=test        webpack        --config webpack.js",
-    "build:release":"cross-env NODE_ENV=release     webpack        --config webpack.js"
+    "dev":           "cross-env NODE_ENV=development  webpack serve  --config webpack.demo.js",
+    "build:dev":     "cross-env NODE_ENV=development  webpack        --config webpack.build.js",
+    "build:prod":    "cross-env NODE_ENV=production   webpack        --config webpack.build.js",
+    "build:test":    "cross-env NODE_ENV=test         webpack        --config webpack.build.js",
+    "build:release": "cross-env NODE_ENV=release      webpack        --config webpack.build.js"
   },
   "keywords": [
     "埋点"
