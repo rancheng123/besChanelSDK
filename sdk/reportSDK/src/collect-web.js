@@ -9,7 +9,6 @@ class CollectWeb extends Collect{
     registerEvent() {
 
         firstPageLoad(()=>{
-            debugger
             this.reportVisit()
         })
         window.addEventListener('beforeunload', (state) => {
@@ -40,12 +39,13 @@ class CollectWeb extends Collect{
             if(document.hidden || document.visibilityState === "hidden"){
                 this.computedLeaveTimeAndDuration()
             }else{
-                debugger
                 this.params.visitTime = getCurrentTime()
             }
         })
         // 监听页面的点击事件
-        window.addEventListener('click', (e) => this.autoCollectUpload(e))
+        window.addEventListener('click', (e) => {
+            this.eventClick(e)
+        })
     }
 }
 export default CollectWeb

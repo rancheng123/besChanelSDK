@@ -172,7 +172,7 @@
     }
 
     // 全埋点实现监听
-    autoCollectUpload (e) {
+    eventClick (e) {
       if(hasEvent(e.target.nodeName,this.events)){
         const eventParams = {
           element_content:e.target.innerText,
