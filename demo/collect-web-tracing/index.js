@@ -1,4 +1,4 @@
-import CollectWebTracing from "../sdk/reportSDK/src/collect-web-tracing/collect-web-tracing";
+import CollectWebTracing from "../../sdk/reportSDK/src/collect-web-tracing/collect-web-tracing";
 
 
 const besChannesSDK = new CollectWebTracing();

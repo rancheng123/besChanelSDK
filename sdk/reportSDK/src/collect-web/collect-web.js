@@ -43,7 +43,6 @@ class CollectWeb extends Collect{
         // 改写replaceState和pushState，以确保window能监听到
         history.replaceState = addEvent('replaceState');
         window.addEventListener('replaceState', (state) => {
-            debugger
             this.onChangeState()
         });
         window.addEventListener('pushState', (state) => {

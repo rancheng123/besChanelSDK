@@ -1,4 +1,4 @@
-import CollectWeb from "../sdk/reportSDK/src/collect-web/collect-web";
+import CollectWeb from "../../sdk/reportSDK/src/collect-web/collect-web";
 
 const besChannesSDK = new CollectWeb();
 besChannesSDK.init({autoCollect:false,events:["BUTTON"]});

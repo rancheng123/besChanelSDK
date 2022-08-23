@@ -6,10 +6,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 let configMap = {
     'collect-web-tracing': {
-        title: '埋点 + 推广跟踪'
+        title: '埋点 + 推广跟踪',
+        template: path.resolve(__dirname,'./demo/collect-web-tracing/index.html'),
+        entry: path.resolve(__dirname,'./demo/collect-web-tracing/index.js')
     },
     'collect-web': {
-        title: '单纯埋点'
+        title: '单纯埋点',
+        template: path.resolve(__dirname,'./demo/collect-web/index.html'),
+        entry: path.resolve(__dirname,'./demo/collect-web/index.js')
     }
 }
 
@@ -19,10 +23,10 @@ let json
 if(process.env.ACTION === 'demo'){
 
     json = {
-        entry: `./demo/${SDK_TYPE}.js`,
+        entry: configMap[SDK_TYPE].entry,
         plugins:[
             new HtmlWebpackPlugin({
-                template: path.resolve(__dirname,'./demo/index.html'),
+                template: configMap[SDK_TYPE].template,
                 title: configMap[SDK_TYPE].title,
             })
         ],

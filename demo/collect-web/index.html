@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+
+</head>
+<body>
+    <h1><%= htmlWebpackPlugin.options.title %></h1>
+    <div style="width:200px">
+      <button>查看数据</button>
+
+      <a  href="/index2.html">index2</a>
+      <div id="pushState">
+        pushState
+      </div>
+      <div id="pushState2">
+        pushState2
+      </div>
+    </div>
+    <script>
+
+      setTimeout(()=>{
+          document.getElementById('pushState').onclick = ()=>{
+              history.pushState({},'','/index_1.html')
+          }
+          document.getElementById('pushState2').onclick = ()=>{
+              history.pushState({},'','/index_2.html')
+          }
+      },2000)
+
+
+
+    </script>
+</body>
+</html>
