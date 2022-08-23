@@ -9,16 +9,6 @@ module.exports = {
         })
     ],
     devtool: 'source-map',
-
-  // 出口文件
-  output: {
-    path: path.resolve(__dirname, 'dist'), // 输出路径
-    filename:`besChannel-${process.env.NODE_ENV}.js`, // 输出文件名
-    library: "collect",
-    libraryTarget: "umd",
-    libraryExport: 'default',
-    publicPath: "/"
-  },
   module: {
     rules: [
       // 编译es6

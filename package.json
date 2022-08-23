@@ -6,11 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "collect-web:demo:dev":      "cross-env NODE_ENV=production   ACTION=demo  SDK_TYPE=collect-web  webpack serve  --config webpack.start.js",
-    "build:dev":     "cross-env NODE_ENV=development  ACTION=build SDK_TYPE=collect-web  webpack        --config webpack.start.js",
+    "collect-web:build:dev":     "cross-env NODE_ENV=development  ACTION=build SDK_TYPE=collect-web  webpack        --config webpack.start.js",
     "build:prod":    "cross-env NODE_ENV=production   ACTION=build SDK_TYPE=collect-web  webpack        --config webpack.start.js",
     "build:test":    "cross-env NODE_ENV=test         ACTION=build SDK_TYPE=collect-web  webpack        --config webpack.start.js",
 
-    "collect-web-tracing:demo:dev":      "cross-env NODE_ENV=production   ACTION=demo  SDK_TYPE=collect-web-tracing  webpack serve  --config webpack.start.js"
+    "collect-web-tracing:demo:dev":      "cross-env NODE_ENV=production   ACTION=demo  SDK_TYPE=collect-web-tracing  webpack serve  --config webpack.start.js",
+    "collect-web-tracing:build:dev":     "cross-env NODE_ENV=development  ACTION=build SDK_TYPE=collect-web-tracing  webpack        --config webpack.start.js"
   },
   "keywords": [
     "埋点"

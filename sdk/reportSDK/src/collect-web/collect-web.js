@@ -83,4 +83,5 @@ class CollectWeb extends Collect{
 
     //生命周期   end
 }
+window.CollectWeb = CollectWeb
 export default CollectWeb
