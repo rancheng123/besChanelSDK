@@ -12,9 +12,22 @@ class CollectWeb extends Collect{
         this.registerEvent();
 
     }
+
+    createTimeStamp(){
+        if(!window.count){
+            window.count = 0
+        }
+        window.count++;
+        if(window.count === 9){
+            window.count = 0
+        }
+        return Date.now() + window.count
+    }
+
     // 注册事件
     registerEvent() {
 
+        let that = this;
 
         history.pushState = (()=>{
             let orig = window.history.pushState;
@@ -22,6 +35,7 @@ class CollectWeb extends Collect{
                 let state = arguments[0];
                 let newHistoryEvent = orig.apply(this,
                     [{
+                        timeStamp: that.createTimeStamp(),
                         ...state
                     },
                         arguments[1],
@@ -48,13 +62,13 @@ class CollectWeb extends Collect{
         // 改写replaceState和pushState，以确保window能监听到
         history.replaceState = addEvent('replaceState');
         window.addEventListener('replaceState', (state) => {
-            this.onChangeState()
+            this.onChangeState('replaceState')
         });
         window.addEventListener('pushState', (state) => {
-            this.onChangeState()
+            this.onChangeState('pushState')
         });
         window.addEventListener('popstate', (state) => {
-            this.onChangeState()
+            this.onChangeState('popstate')
         });
 
         // 监听页面是显示和隐藏
@@ -76,7 +90,7 @@ class CollectWeb extends Collect{
     onPageShow(){
         this.reportVisit()
     }
-    onChangeState(){
+    onChangeState(type){
         this.reportLeaveAndVisit()
     }
     onClick(e){

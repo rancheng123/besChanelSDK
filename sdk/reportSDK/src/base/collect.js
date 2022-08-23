@@ -389,15 +389,15 @@
       let query;
       if(type === 1) {
 
+          query = {
+              ...commonProperties,
+              page_session:pageSession,
+              ...visitParams,
+          }
 
-        let utmJson = this.extendReportParam?this.extendReportParam(): {}
-
-        query = {
-          ...commonProperties,
-          page_session:pageSession,
-          ...visitParams,
-          ...utmJson,
-        }
+          if(this.onBeforeReport){
+              query = this.onBeforeReport(query)
+          }
       } else if(type === 2) {
         query = {
           page_session:pageSession,

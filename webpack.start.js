@@ -44,6 +44,14 @@ if(process.env.ACTION === 'demo'){
         devServer: {
             https: true,
             host: "127.0.0.1",
+            historyApiFallback: {
+                rewrites: [
+                    {
+                        from: /.*/,  // 访问任何地址
+                        to: '/index.html'  // 都转向index.html页面（根路径页面）
+                    }
+                ]
+            }
         },
         mode: "development",
     }
