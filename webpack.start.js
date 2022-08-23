@@ -3,6 +3,16 @@ const common = require("./webpack.common.js");
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+
+let configMap = {
+    'collect-web-tracing': {
+        title: '埋点 + 推广跟踪'
+    },
+    'collect-web': {
+        title: '单纯埋点'
+    }
+}
+
 let SDK_TYPE = process.env.SDK_TYPE
 
 let json
@@ -13,7 +23,7 @@ if(process.env.ACTION === 'demo'){
         plugins:[
             new HtmlWebpackPlugin({
                 template: path.resolve(__dirname,'./demo/index.html'),
-                title: 'My App',
+                title: configMap[SDK_TYPE].title,
             })
         ],
         devServer: {
