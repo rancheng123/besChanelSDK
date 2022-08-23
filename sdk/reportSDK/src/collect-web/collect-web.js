@@ -10,6 +10,29 @@ class CollectWeb extends Collect{
     // 注册事件
     registerEvent() {
 
+
+        history.pushState = (()=>{
+            let orig = window.history.pushState;
+            return function () {
+                let state = arguments[0];
+                let newHistoryEvent = orig.apply(this,
+                    [{
+                        ...state
+                    },
+                        arguments[1],
+                        arguments[2]
+                    ]
+
+                );
+                let e = new Event('pushState');
+                e.arguments = arguments;
+                window.dispatchEvent(e);
+                return newHistoryEvent;
+            }
+        })()
+
+
+
         firstPageLoad(()=>{
             this.onPageShow()
         })
@@ -20,6 +43,7 @@ class CollectWeb extends Collect{
         // 改写replaceState和pushState，以确保window能监听到
         history.replaceState = addEvent('replaceState');
         window.addEventListener('replaceState', (state) => {
+            debugger
             this.onChangeState()
         });
         window.addEventListener('pushState', (state) => {
