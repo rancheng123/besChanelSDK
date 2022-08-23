@@ -1,15 +1,22 @@
 import CollectWeb from "../collect-web/collect-web";
-import getUtmJson, {parseUrl} from "./parseUrl";
+import getUtmJson, {parseUrl, getOriginPage} from "./parseUrl";
 class CollectWebTracing extends CollectWeb{
     constructor() {
         super()
     }
 
-    // //覆盖生命周期
-    // onPageShow(){
-    //
-    //
-    // }
+    //覆盖生命周期
+    onPageShow(){
+        this.addOriginPage()
+        console.log('补充参数')
+        this.reportVisit()
+
+    }
+
+    onChangeState(){
+
+    }
+
     extendReportParam(){
         let location =  window.location
         if(this.mappingAddress && this.parseMapping(this.mappingAddress)){

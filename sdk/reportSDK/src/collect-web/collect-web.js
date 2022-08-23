@@ -1,11 +1,16 @@
 import Collect from "../base/collect";
 import {addEvent, getCurrentTime} from "../utils";
 import {firstPageLoad} from "../../../common/utils";
+
+
+
 class CollectWeb extends Collect{
     constructor() {
         super()
+
         // 注册事件
         this.registerEvent();
+
     }
     // 注册事件
     registerEvent() {
