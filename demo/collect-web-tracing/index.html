@@ -19,6 +19,9 @@
       <div id="pushState2">
         pushState2
       </div>
+        <div id="pushState3">
+            pushState3
+        </div>
     </div>
     <script>
 
@@ -28,6 +31,9 @@
           }
           document.getElementById('pushState2').onclick = ()=>{
               history.pushState({},'','/index_2.html')
+          }
+          document.getElementById('pushState3').onclick = ()=>{
+              history.pushState({},'','/index_3.html')
           }
       },2000)
 

@@ -47,6 +47,15 @@ class CollectWebTracing extends CollectWeb{
                 this.updatePreState(history.state.timeStamp)
             }
         }, false);
+
+
+        //待优化  start
+        window.firstState = {
+            isFirstState: true,
+            timeStamp: this.createTimeStamp()
+        }
+        this.pushStateArr(window.firstState)
+        //待优化  end
     }
 
     //覆盖生命周期      onPageShow + onChangeState
@@ -75,8 +84,12 @@ class CollectWebTracing extends CollectWeb{
                 })
                 this.reportLeaveAndVisit()
             }
-        }else if(type == 'popState'){
-            this.reportLeaveAndVisit()
+        }else if(type == 'popstate'){
+            console.log(history.state?.traceFlag)
+            if(history.state?.traceFlag){
+                this.reportLeaveAndVisit()
+            }
+
         }
 
 
