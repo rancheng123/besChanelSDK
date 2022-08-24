@@ -17,3 +17,14 @@ besChannesSDK.init({
 
 
 
+window.addEventListener('load',()=>{
+    document.getElementById('search').onclick=(e)=>{
+        besChannesSDK.eventClick(e)
+    }
+}, false)
+
+
+
+
+
+
