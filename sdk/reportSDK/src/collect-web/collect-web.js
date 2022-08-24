@@ -82,7 +82,7 @@ class CollectWeb extends Collect{
         })
         // 监听页面的点击事件
         window.addEventListener('click', (e) => {
-            this.onClick(e)
+            //this.onClick(e)
         })
     }
 

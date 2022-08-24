@@ -46,7 +46,7 @@
       this.expiresTime = 30 * 60;
       this.baseUrl = baseUrl[process.env.NODE_ENV],
       this.autoCollect = false
-      this.events = ["A"]
+      this.events = []
       this.getFingerprintId()
       this.getAnonymousId()
       this.getSessionId()
@@ -151,22 +151,20 @@
 
     // 全埋点实现监听
     eventClick (e) {
-      if(hasEvent(e.target.nodeName,this.events)){
+
         const eventParams = {
-          element_content:e.target.innerText,
-          element_name:e.target.innerText,
-          element_target_url:e.target.href,
-          element_class:e.target.className,
-          element_id:e.target.id,
+            element_content:e.target.innerText,
+            element_name:e.target.innerText,
+            element_target_url:e.target.href,
+            element_class:e.target.className,
+            element_id:e.target.id,
         }
         if(e.target.nodeName === "A"){
-          // a标签会触发页面离开事件
-          Object.assign(this.params,eventParams);
+            // a标签会触发页面离开事件
+            Object.assign(this.params,eventParams);
         }else{
-          this._eventClick(eventParams)
+            this._eventClick(eventParams)
         }
-
-      }
     }
 
     computedLeaveTimeAndDuration(){
@@ -344,6 +342,19 @@
       let commomParams = this._concatParams(2);
       this.collectUpload(commomParams);
     }
+
+
+
+      eventSearch({search_keywords}){
+          this.getSessionId() // 校验会话是否过期
+          const eventData = {
+              behavior_type:'web_search',
+              search_keywords
+          }
+          Object.assign(this.eventData, eventData);
+          let commomParams = this._concatParams(2);
+          this.collectUpload(commomParams);
+      }
     /**
    * 用户关联触发
    * @param {*} customerId 事件名称

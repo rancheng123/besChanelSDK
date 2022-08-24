@@ -2,7 +2,6 @@ import CollectWeb from "../../sdk/reportSDK/src/collect-web/collect-web";
 
 const besChannesSDK = new CollectWeb();
 besChannesSDK.init({
-    events:["BUTTON"],
     customParams: {
         memberid: 123,
         openid: 123,
@@ -18,8 +17,17 @@ besChannesSDK.init({
 
 
 window.addEventListener('load',()=>{
-    document.getElementById('search').onclick=(e)=>{
+    //点击
+    document.getElementById('click').onclick=(e)=>{
         besChannesSDK.eventClick(e)
+    }
+
+
+    //搜索
+    document.getElementById('search').onclick=(e)=>{
+        besChannesSDK.eventSearch({
+            search_keywords: '小明'
+        })
     }
 }, false)
 
