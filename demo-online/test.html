@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://localhost/collect-web/besChannel-development.js"></script>
+    <script>
+        const besChannesSDK = new CollectWeb();
+        besChannesSDK.init({
+            customParams: {
+                memberid: 123,
+                openid: 123,
+                target_type: 'page_title',
+                system_type: '官网',
+                mappingAddress: JSON.stringify({
+                    //'/index.html': '/index2.html',
+                    '/meetings/MeetingPc/Detail': '/meetings-api/sapIndex/SapSourceData'
+                })
+            }
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>
