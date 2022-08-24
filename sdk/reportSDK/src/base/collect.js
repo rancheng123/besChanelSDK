@@ -67,6 +67,20 @@
        // 获取浏览器信息
        await this.getDeviceInfo();
 
+
+       if(option.customParams){
+
+           this.commonProperties = {
+               ...this.commonProperties,
+               ...option.customParams
+           }
+
+           if(option.customParams.mappingAddress){
+               this.mappingAddress = option.customParams.mappingAddress
+           }
+       }
+
+
        if(option.autoCollect){
            const visitParams = {
                page_id: window.location,
@@ -251,16 +265,6 @@
               return location.origin + mapJson[location.pathname] + '?' + arr.join('&')
           }else{
               return null
-          }
-      }
-      recieveSelfParmas(opts){
-          this.commonProperties = {
-              ...this.commonProperties,
-              ...opts
-          }
-
-          if(opts.mappingAddress){
-              this.mappingAddress = opts.mappingAddress
           }
       }
       tokenToOrgId(){
