@@ -4,6 +4,7 @@ import {firstPageLoad} from "../../../common/utils";
 
 
 
+
 class CollectWeb extends Collect{
     constructor() {
         super()
